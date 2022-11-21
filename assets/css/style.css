@@ -12,3 +12,23 @@
     font-family: 'Lato', sans-serif;
     box-sizing: border-box;
 }
+
+header {
+    background-color: var(--important-color);
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+header h1 {
+    text-align: center;
+}
+
+.upper {
+    text-transform: uppercase;
+}
+
+.search-container {
+    display: block;
+    max-width: 30%;
+}
