@@ -12,6 +12,20 @@ var searchBtn = document.querySelector("#search-button");
 var searchQuery = document.querySelector("#search-city");
 
 
+const d = new Date();
+let day = d.getDate();
+let month = d.getMonth() + 1;
+var dayMonth = month + "/" + day;
+var card1 = document.getElementById("day1");
+var card2 = document.getElementById("day2");
+var card3 = document.getElementById("day3");
+var card4 = document.getElementById("day4");
+
+card1.textContent = month + "/" + (day + 1);
+card2.textContent = month + "/" + (day + 2);
+card3.textContent = month + "/" + (day + 3);
+card4.textContent = month + "/" + (day + 4);
+
 function fetchWeather() {
 
     userInput = searchQuery.value;
@@ -58,9 +72,9 @@ function fetchWeather() {
         document.getElementById("cityWind4").textContent = data.list[35].wind.speed + "MPH";
         document.getElementById("cityHumidity4").textContent = data.list[35].main.humidity + "%";
 
-        document.getElementById("cityTemp5").textContent = data.list[39].main.temp + "°F";
-        document.getElementById("cityWind5").textContent = data.list[39].wind.speed + "MPH";
-        document.getElementById("cityHumidity5").textContent = data.list[39].main.humidity + "%";
+        // document.getElementById("cityTemp5").textContent = data.list[39].main.temp + "°F";
+        // document.getElementById("cityWind5").textContent = data.list[39].wind.speed + "MPH";
+        // document.getElementById("cityHumidity5").textContent = data.list[39].main.humidity + "%";
 
     });
 }
