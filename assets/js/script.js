@@ -1,29 +1,28 @@
-var searchHistory = [];
 var APIKey = '13aeebf93c9547e3a573810e1a64c2b2';
-var geoURL =
-  "http://api.openweathermap.org/geo/1.0/direct?&appid=99886c59c78ad6d91177b0fde1bce458&q=";
-var cityURL =
-  "http://api.openweathermap.org/data/2.5/forecast?&units=imperial&appid=99886c59c78ad6d91177b0fde1bce458";
-// var queryURL = 
-// "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey;
+var APIcall = 'http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=' + APIKey;
+var queryURL = 
+"https://api.openweathermap.org/data/2.5/forecast?"
+
+var cityName = document.querySelector("#search-city");
+var cityQuery = cityName.val();
+cityQuery = cityQuery.replace(" ", "_");
+var geoURL = 'http://api.openweathermap.org/geo/1.0/direct?q=' + cityQuery + "&appid=" + APIKey;
 
 
-var searchForm = document.querySelector("#search-form");
-var searchInput = document.querySelector("#search-input");
-var submitBtn = document.querySelector("#search-button");
-var searchHistory = document.querySelector("#history");
-var todayDash = document.querySelector("#today");
-var forecastDash = document.querySelector("#forecast");
+function fetchWeather() {
+    userInput = location.value;
 
-
-function fetchWeather(location) {
-    var userInput = location.value;
-
-    fetch(geoURL + userInput)
+    fetch(APIcall)
     .then (function(res) {
         return res.json();
     }) 
     .then (function(data) {
-        console.log(data);
+        var lat = "lat=" + data.city.coord.lat;
+        var lon = "&lon=" + data.city.coord.lon;
+        var ID = "&appid=" + APIKey;
+        return fetch(queryURL + lat + lon + ID);
     })
+    .then (function(res))
 }
+
+fetchWeather();
