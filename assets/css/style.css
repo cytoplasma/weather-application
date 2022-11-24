@@ -13,3 +13,21 @@
     box-sizing: border-box;
 }
 
+header {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-bottom: 2em;
+}
+
+.search-div {
+    padding: 2em;
+}
+
+h3,
+p,
+h4,
+h1,
+h2,
+span {
+    text-transform: uppercase;
+}
