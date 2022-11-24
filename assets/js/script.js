@@ -4,25 +4,30 @@ var queryURL =
 "https://api.openweathermap.org/data/2.5/forecast?"
 
 var cityName = document.querySelector("#search-city");
-var cityQuery = cityName.val();
+var cityQuery = cityName.value;
 cityQuery = cityQuery.replace(" ", "_");
 var geoURL = 'http://api.openweathermap.org/geo/1.0/direct?q=' + cityQuery + "&appid=" + APIKey;
 
+var searchBtn = document.querySelector("#search-button");
+var searchQuery = document.querySelector("#search-city");
+
 
 function fetchWeather() {
-    userInput = location.value;
+    userInput = searchQuery.value;
 
     fetch(APIcall)
     .then (function(res) {
         return res.json();
     }) 
     .then (function(data) {
-        var lat = "lat=" + data.city.coord.lat;
-        var lon = "&lon=" + data.city.coord.lon;
-        var ID = "&appid=" + APIKey;
-        return fetch(queryURL + lat + lon + ID);
+        var lat = data[0].lat;
+        var lon = data[0].lon;
+        var currentQuery = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=13aeebf93c9547e3a573810e1a64c2b2&units=${cityQuery}`;
+        return fetch(currentQuery);
     })
-    .then (function(res))
+    .then (function(res) {
+        return res.json();
+    })
 }
 
-fetchWeather();
+searchBtn.addEventListener("click", fetchWeather);
